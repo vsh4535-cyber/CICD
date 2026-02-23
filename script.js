@@ -1,13 +1,5 @@
-const HEX_CHARACTERS = '0123456789ABCDEF';
-const HEX_LENGTH = 6;
-
 function getRandomColor() {
-    let color = '#';
-    for (let i = 0; i < HEX_LENGTH; i++) {
-        const randomIndex = Math.floor(Math.random() * HEX_CHARACTERS.length);
-        color += HEX_CHARACTERS[randomIndex];
-    }
-    return color;
+    return '#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
 }
 
 // Export for testing
