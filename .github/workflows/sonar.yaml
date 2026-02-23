@@ -29,8 +29,8 @@ jobs:
         uses: SonarSource/sonarqube-scan-action@v2
         with:
           args: >
-            -Dsonar.projectKey=vsh4535-cyber
-            -Dsonar.organization=vsh4535-cyber_CICD
+            -Dsonar.projectKey=vsh4535-cyber_CICD
+            -Dsonar.organization=vsh4535-cyber
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: https://sonarcloud.io
