@@ -1,7 +1,3 @@
-const colorDisplay = document.getElementById('color-display');
-const colorName = document.getElementById('color-name');
-const changeColorBtn = document.getElementById('change-color-btn');
-
 function getRandomColor() {
     const letters = '0123456789ABCDEF';
     let color = '#';
@@ -11,14 +7,18 @@ function getRandomColor() {
     return color;
 }
 
-function changeColor() {
-    const newColor = getRandomColor();
-    colorDisplay.style.backgroundColor = newColor;
-    colorName.textContent = newColor;
-    document.body.style.backgroundColor = newColor;
-}
+document.addEventListener('DOMContentLoaded', function() {
+    const colorDisplay = document.getElementById('color-display');
+    const colorName = document.getElementById('color-name');
+    const changeColorBtn = document.getElementById('change-color-btn');
 
-changeColorBtn.addEventListener('click', changeColor);
-
-// Initial color change
-changeColor();
+    function changeColor() {
+        const newColor = getRandomColor();
+        colorDisplay.style.backgroundColor = newColor;
+        colorName.textContent = newColor;
+        document.body.style.backgroundColor = newColor;
+    }
+    changeColorBtn.addEventListener('click', changeColor);
+    // Initial color change
+    changeColor();
+});
