@@ -40,7 +40,7 @@ jobs:
           mkdir temp
           cp index.html temp/
           cp styles.css temp/
-          cp app.js temp/
+          cp script.js temp/
  
       - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v3
