@@ -29,7 +29,7 @@ jobs:
             -Dsonar.projectKey=vsh4535-cyber_CICD
             -Dsonar.organization=vsh4535-cyber
         env:
-          SONAR_TOKEN: ${{ secrets.CICD_token }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: https://sonarcloud.io
  
       - name: Build
