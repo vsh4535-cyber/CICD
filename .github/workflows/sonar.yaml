@@ -19,25 +19,27 @@ jobs:
         with:
           node-version: 18
  
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests with coverage
+        run: npm run test:coverage
+
       - name: Lint JavaScript
-        run: npx eslint javascript.js || true
- 
+        run: npx eslint script.js || true
+
       - name: Sonar Scan
         uses: SonarSource/sonarqube-scan-action@v2
         with:
           args: >
-            -Dsonar.projectKey=vsh4535-cyber_CICD
+            -Dsonar.projectKey=vsh4535_cyber_CICD
             -Dsonar.organization=vsh4535-cyber
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: https://sonarcloud.io
- 
-      - name: Build
+            -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
         run: |
           mkdir devops
           cp index.html devops/
-          cp style.css devops/
-          cp javascript.js devops/
+          cp styles.css devops/
+          cp script.js devops/
  
       - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v3

@@ -7,7 +7,9 @@ if (typeof module !== 'undefined' && module.exports) {
     module.exports = { getRandomColor };
 }
 
-document.addEventListener('DOMContentLoaded', init);
+if (typeof document !== 'undefined') {
+    document.addEventListener('DOMContentLoaded', init);
+}
 
     function applyColor(color) {
         colorDisplay.style.backgroundColor = color;
