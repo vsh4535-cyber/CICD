@@ -50,6 +50,8 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
     permissions:
       pages: write       # Needed to deploy
       id-token: write    # Required for secure OIDC auth
