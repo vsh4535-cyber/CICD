@@ -1,19 +1,42 @@
-function getRandomColor() {
-    return '#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
-}
+document.addEventListener('DOMContentLoaded', init);
 
-document.addEventListener('DOMContentLoaded', function() {
+function init() {
     const colorDisplay = document.getElementById('color-display');
     const colorName = document.getElementById('color-name');
     const changeColorBtn = document.getElementById('change-color-btn');
 
+    // Guard clause: ensure elements exist
+    if (!colorDisplay || !colorName || !changeColorBtn) {
+        console.error('Required DOM elements not found');
+        return;
+    }
+
+    const HEX_CHARACTERS = '0123456789ABCDEF';
+    const HEX_LENGTH = 6;
+
+    function getRandomColor() {
+        let color = '#';
+        for (let i = 0; i < HEX_LENGTH; i++) {
+            const randomIndex = Math.floor(Math.random() * HEX_CHARACTERS.length);
+            color += HEX_CHARACTERS[randomIndex];
+        }
+        return color;
+    }
+
+    function applyColor(color) {
+        colorDisplay.style.backgroundColor = color;
+        colorName.textContent = color;
+        document.body.style.backgroundColor = color;
+    }
+
     function changeColor() {
         const newColor = getRandomColor();
-        colorDisplay.style.backgroundColor = newColor;
-        colorName.textContent = newColor;
-        document.body.style.backgroundColor = newColor;
+        applyColor(newColor);
     }
+
+    // Event listener
     changeColorBtn.addEventListener('click', changeColor);
-    // Initial color change
+
+    // Set initial color
     changeColor();
-});
+}
