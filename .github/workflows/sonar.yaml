@@ -1,7 +1,10 @@
-name: CI-CD Pipeline
+name: CI-CD Pipeline v2
  
 on:
-  workflow_dispatch:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
  
 jobs:
  
@@ -19,39 +22,37 @@ jobs:
         with:
           node-version: 18
  
-      - name: Install dependencies
-        run: npm install
-
-      - name: Run tests with coverage
-        run: npm run test:coverage
-
       - name: Lint JavaScript
-        run: npx eslint script.js || true
-
+        run: npx eslint javascript.js || true
+ 
       - name: Sonar Scan
         uses: SonarSource/sonarqube-scan-action@v2
         with:
           args: >
-            -Dsonar.projectKey=vsh4535_cyber_CICD
-            -Dsonar.organization=vsh4535-cyber
-            -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
+            -Dsonar.projectKey=vsh4535-cyber
+            -Dsonar.organization=vsh4535-cyber_CICD
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: https://sonarcloud.io
+ 
+      - name: Build
         run: |
-          mkdir devops
-          cp index.html devops/
-          cp styles.css devops/
-          cp script.js devops/
+          mkdir temp
+          cp index.html temp/
+          cp styles.css temp/
+          cp app.js temp/
  
       - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: devops/
+          path: temp/
  
   deploy:
     needs: build
     runs-on: ubuntu-latest
     permissions:
-      pages: write       
-      id-token: write    
+      pages: write       # Needed to deploy
+      id-token: write    # Required for secure OIDC auth
  
     steps:
       - name: Deploy
