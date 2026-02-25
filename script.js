@@ -1,15 +1,14 @@
 function getRandomColor() {
-    return '#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
+    return '#' + Math.floor(Math.random() * 16777215)
+        .toString(16)
+        .padStart(6, '0');
 }
 
-// Export for testing
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { getRandomColor };
-}
+document.addEventListener("DOMContentLoaded", function () {
 
-if (typeof document !== 'undefined') {
-    document.addEventListener('DOMContentLoaded', init);
-}
+    const colorDisplay = document.getElementById("color-display");
+    const colorName = document.getElementById("color-name");
+    const changeColorBtn = document.getElementById("change-color-btn");
 
     function applyColor(color) {
         colorDisplay.style.backgroundColor = color;
@@ -22,9 +21,8 @@ if (typeof document !== 'undefined') {
         applyColor(newColor);
     }
 
-    // Event listener
-    changeColorBtn.addEventListener('click', changeColor);
+    changeColorBtn.addEventListener("click", changeColor);
 
-    // Set initial color
+    // Initial color
     changeColor();
-}
+});
