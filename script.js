@@ -1,28 +1,21 @@
-function getRandomColor() {
-    return '#' + Math.floor(Math.random() * 16777215)
-        .toString(16)
-        .padStart(6, '0');
-}
-
 document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("login-form");
+    const message = document.getElementById("message");
 
-    const colorDisplay = document.getElementById("color-display");
-    const colorName = document.getElementById("color-name");
-    const changeColorBtn = document.getElementById("change-color-btn");
+    form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
 
-    function applyColor(color) {
-        colorDisplay.style.backgroundColor = color;
-        colorName.textContent = color;
-        document.body.style.backgroundColor = color;
-    }
-
-    function changeColor() {
-        const newColor = getRandomColor();
-        applyColor(newColor);
-    }
-
-    changeColorBtn.addEventListener("click", changeColor);
-
-    // Initial color
-    changeColor();
+        // Simple placeholder logic; replace with real authentication as needed
+        if (username === "admin" && password === "password") {
+            message.textContent = "Login successful!";
+            message.classList.remove("error");
+            message.classList.add("success");
+        } else {
+            message.textContent = "Invalid credentials.";
+            message.classList.remove("success");
+            message.classList.add("error");
+        }
+    });
 });

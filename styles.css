@@ -15,7 +15,6 @@ body {
     height: 100vh;
     margin: 0;
     background-color: var(--background-color);
-    transition: background-color 0.5s;
 }
 
 .container {
@@ -24,36 +23,52 @@ body {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px var(--shadow-color);
+    width: 300px;
 }
 
-.color-display {
-    width: 200px;
-    height: 200px;
-    margin: 20px auto;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: background-color 0.5s;
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
 }
 
-#color-name {
-    font-size: 24px;
-    font-weight: bold;
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
     color: var(--text-color);
 }
 
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
 button {
-    padding: 10px 20px;
+    width: 100%;
+    padding: 10px;
     font-size: 16px;
     background-color: var(--primary-color);
     color: var(--white);
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
 }
 
 button:hover {
     background-color: var(--primary-hover);
+}
+
+.message {
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+.message.success {
+    color: green;
+}
+
+.message.error {
+    color: red;
 }
